@@ -8,6 +8,47 @@
 
 #import "TaskInfo.h"
 
+static NSString *strTaskID;
+static NSString *strTaskName;
+
+
 @implementation TaskInfo
+
++(NSString *)getTaskID
+{
+    return strTaskID;
+}
++(NSString *)getTaskName
+{
+    return strTaskName;
+}
++(void)setTaskID:(NSString *)value
+{
+    strTaskID = value;
+}
++(void)setTaskName:(NSString *)value
+{
+    strTaskName =value;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

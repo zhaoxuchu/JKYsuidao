@@ -8,6 +8,21 @@
 
 #import "UserInfo.h"
 
+ static NSString *strUserName;
+
 @implementation UserInfo
+
++(void)setUserName:(NSString *)strname;
+{
+    strUserName = strname;
+}
+
+
+
++(NSString *)getUserName
+{
+    return strUserName;
+}
+
 
 @end

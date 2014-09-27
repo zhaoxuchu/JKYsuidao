@@ -8,6 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuViewController : UIViewController
+@protocol MenuDelegate<NSObject>
+@optional
+-(void)selectedCell:(NSString *)cellTitle;
+@end
+
+@interface MenuViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+{
+    id<MenuDelegate> selctedDelegate;
+    
+    IBOutlet UITableView *tableview;
+}
+
+@property(nonatomic, retain)id<MenuDelegate> selctedDelegate;
+
+// 属性
+@property (strong, nonatomic) NSArray *dataList;
+@property (strong, nonatomic) NSArray *imageList;
+
+
+
 
 @end

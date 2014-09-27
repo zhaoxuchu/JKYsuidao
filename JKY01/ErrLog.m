@@ -8,6 +8,45 @@
 
 #import "ErrLog.h"
 
+static bool* OptResulter;
+static NSString* exception;
+static NSString* title;
+
 @implementation ErrLog
+
+
++(void)setOptResult:(BOOL *)blOptResult
+{
+    OptResulter =blOptResult;
+}
+
++(void)setexception:(NSString *)strexception
+{
+    exception = strexception;
+}
+
++(void)setOptTitle:(NSString *)strTitle
+{
+    title =strTitle;
+}
+
+
+
++(BOOL)GetOptResult
+{
+    return OptResulter;
+}
+
++(NSString*)Getexception
+{
+    return exception;
+}
+
++(NSString*)GetOptTitle
+{
+    return title;
+}
+
+
 
 @end

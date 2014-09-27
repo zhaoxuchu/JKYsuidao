@@ -10,4 +10,8 @@
 
 @interface UserInfo : NSObject
 
+
++(NSString *)getUserName;
++(void)setUserName:(NSString *)strname;
+
 @end

@@ -8,6 +8,32 @@
 
 #import "DBInfo.h"
 
+
+static NSString* OtherTestOutputResult;
+
 @implementation DBInfo
+
++(void)setOptOtherTestDBOutPutResult:(NSString *)OptOutputResult
+{
+    OtherTestOutputResult =OptOutputResult;
+}
+
++(NSString*)GetOptOtherTestDBOutPutResult
+{
+    return OtherTestOutputResult;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

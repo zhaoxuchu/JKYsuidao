@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DXAlertView.h"
 
-@interface CheckerViewController : UIViewController
+
+@interface CheckerViewController : UIViewController<SureDelegate>
+{
+    DXAlertView *alert;
+}
+
+
+@property (strong, nonatomic) IBOutlet UIButton *btnjiance;
+@property (strong, nonatomic) IBOutlet UIButton *btnJilu;
+@property (strong, nonatomic) IBOutlet UIButton *btnFuhe;
+
+-(NSString *)getjianceName;
+-(NSString *)getjiluName;
+-(NSString *)getfuheName;
 
 @end

@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
 
 @interface CreateTable : NSObject
+
+-(void)createTalbe;
+- (void)createDB;
+-(void)deleteAllTable;
+
 
 @end

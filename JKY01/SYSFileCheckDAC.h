@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
+#import "ErrLog.h"
+#import "DBInfo.h"
 
 @interface SYSFileCheckDAC : NSObject
+{
+    FMResultSet *resultSet;
+}
+
+
+-(Boolean)AddFileCheckWithRoadID:(NSString*)strRoadID TaskID:(NSString*)strTaskID SortID:(NSString*)strSortID CheckPro:(NSString*)strCheckPro MainContent:(NSString*)strMainContent CheckZQ:(NSString*)strCheckZQ TrueZQ:(NSString*)strTrueZQ Remark:(NSString*)strRemark Checked:(NSString*)strChecked Record:(NSString*)strRecord CheckAagin:(NSString*)strCheckAagin CheckDate:(NSString*)strCheckDate AddUser:(NSString*)strAddUser AddDate:(NSString*)strAddDate flg:(NSString*)strflg Uploadflg:(NSString*)strUploadflg;
+
+
+
 
 @end

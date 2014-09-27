@@ -10,4 +10,22 @@
 
 @interface DBInfo : NSObject
 
+// 设置获取OtherTest数据表output值
++(void)setOptOtherTestDBOutPutResult:(NSString *)OptOutputResult;
++(NSString*)GetOptOtherTestDBOutPutResult;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

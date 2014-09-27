@@ -13,12 +13,25 @@
 @end
 
 @implementation TunnelViewController
+@synthesize labTitle;
+@synthesize labTitle2;
+@synthesize bgview;
+@synthesize labGuanlidanwei;
+@synthesize labJianchadidian;
+@synthesize labLuduandengji;
+@synthesize labSuidaoName;
+@synthesize labSuoshuluduan;
+@synthesize labWeihudanwei;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        bgview.layer.masksToBounds = YES;
+        bgview.layer.cornerRadius = 6.0;
+        
+        
     }
     return self;
 }

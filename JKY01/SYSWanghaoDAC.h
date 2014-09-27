@@ -7,7 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
+#import "ErrLog.h"
+#import "DBInfo.h"
 
 @interface SYSWanghaoDAC : NSObject
+{
+    FMResultSet *resultSet;
+}
+
+
+
+
 
 @end

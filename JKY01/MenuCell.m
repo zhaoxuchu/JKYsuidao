@@ -9,12 +9,15 @@
 #import "MenuCell.h"
 
 @implementation MenuCell
+@synthesize imageView;
+@synthesize labTitle;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
     }
     return self;
 }
@@ -25,5 +28,25 @@
 
     // Configure the view for the selected state
 }
+
+-(void)setImgTitle:(UIImageView *)imgTitle
+{
+    imageView = imgTitle;
+}
+
+-(void)setTitle:(NSString *)strlabTitle
+{
+    labTitle.text = strlabTitle;
+}
+
+
+
+
+
+
+
+
+
+
 
 @end

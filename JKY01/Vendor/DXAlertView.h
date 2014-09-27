@@ -7,8 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
+#import "ErrLog.h"
 
-@interface DXAlertView : UIView
+@protocol SureDelegate<NSObject>
+@optional
+-(void)clickedOK:(NSString *)UserName;
+-(void)jiluClick:(NSString *)UserName;
+-(void)fuheClick:(NSString *)UserName;
+@end
+
+
+@interface DXAlertView : UIView<UIViewControllerTransitioningDelegate>
+{
+     id<SureDelegate>btnOKDelegate;
+    NSString *strName;
+}
 
 - (id)initWithTitle:(NSString *)title
         contentText:(NSString *)content
@@ -20,6 +35,8 @@
 @property (nonatomic, copy) dispatch_block_t leftBlock;
 @property (nonatomic, copy) dispatch_block_t rightBlock;
 @property (nonatomic, copy) dispatch_block_t dismissBlock;
+@property(nonatomic, retain)id<SureDelegate> btnOKDelegate;
+@property(nonatomic, retain) NSString *strflg;
 
 @end
 

@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TLAlertView.h"
+#import "ClearTableAllData.h"
+#import "ErrLog.h"
+#import "NetWebServiceRequest.h"
+#import "CreateTable.h"
+
+
 
 @interface SystemSetViewController : UIViewController
+{
+    FMDatabase *database;
+    FMResultSet *resultSet;
+    int cnt;
+}
 
 @end

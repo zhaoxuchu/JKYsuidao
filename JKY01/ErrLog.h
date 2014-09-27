@@ -10,4 +10,13 @@
 
 @interface ErrLog : NSObject
 
++(void)setOptResult:(BOOL *)OptResult;
++(void)setexception:(NSString *)strexception;
++(void)setOptTitle:(NSString *)strTitle;
+
++(BOOL)GetOptResult;
++(NSString* )Getexception;
++(NSString*)GetOptTitle;
+
+
 @end

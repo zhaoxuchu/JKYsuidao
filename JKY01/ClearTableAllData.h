@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
+
 
 @interface ClearTableAllData : NSObject
+
+
+-(void)ClearAllData;
+
 
 @end

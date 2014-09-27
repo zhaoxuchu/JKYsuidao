@@ -10,4 +10,25 @@
 
 @interface addMianFromComponent : NSObject
 
+-(int)getTopBannerX;
+-(int)getTopBannerY;
+-(int)getTopBannerWidth;
+-(int)getTopBannerHeight;
+
+-(int)getMenuBarX;
+-(int)getMenuBarY;
+-(int)getMenuBarWidth;
+-(int)getMenuBarHeight;
+
+-(int)getOptionFromX;
+-(int)getOptionFromY;
+-(int)getOptionFromWidth;
+-(int)getOptionFromHeight;
+
+-(int)getTunnelX;
+-(int)getTunnelY;
+-(int)getTunnelWidth;
+-(int)getTunnelHeight;
+
+
 @end

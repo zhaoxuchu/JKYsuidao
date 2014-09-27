@@ -7,7 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
+#import "ErrLog.h"
+#import "DBInfo.h"
 
 @interface UserTbDAC : NSObject
+{
+    FMDatabase *database;
+    FMResultSet *resultSet;
+    int cnt;
+}
+
+-(Boolean)UserLoginWithUserName:(NSString *)strName Psd:(NSString *)strPsd;
+
+
+
+
 
 @end

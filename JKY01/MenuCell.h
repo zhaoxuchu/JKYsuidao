@@ -10,4 +10,13 @@
 
 @interface MenuCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (strong, nonatomic) IBOutlet UILabel *labTitle;
+
+-(void)setImgTitle:(UIImageView *)imgTitle;
+-(void)setTitle:(NSString *)strlabTitle;
+
+
+
 @end

@@ -10,4 +10,22 @@
 
 @interface TaskInfo : NSObject
 
+
++(NSString *)getTaskID;
++(NSString *)getTaskName;
++(void)setTaskID:(NSString *)value;
++(void)setTaskName:(NSString *)value;
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

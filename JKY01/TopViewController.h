@@ -8,6 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TopBannerDeleaget <NSObject>
+
+-(void)OpenAndCloseBanner:(NSString *)bolFLg;
+
+@end
+
 @interface TopViewController : UIViewController
+{
+    id<TopBannerDeleaget>OpencloseDeleaget;
+    
+    NSString *bol;
+}
+
+@property(nonatomic , retain)id<TopBannerDeleaget> OpencloseDeleaget;
+
+@property(nonatomic , retain)NSString *bol;
+
+
+
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import "DXAlertView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UserTbDAC.h"
 
 
 #define kAlertWidth 245.0f
@@ -29,6 +30,10 @@
 @end
 
 @implementation DXAlertView
+@synthesize btnOKDelegate;
+@synthesize alertTxtPsd;
+@synthesize alertTxtName;
+@synthesize strflg;
 
 + (CGFloat)alertWidth
 {
@@ -74,7 +79,7 @@
         self.alertTxtName.textAlignment = self.alertTxtName.textAlignment = NSTextAlignmentCenter;
         self.alertTxtName.textColor = [UIColor colorWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:1];
         self.alertTxtName.font = [UIFont systemFontOfSize:15.0f];
-        self.alertTxtName.borderStyle = UITextBorderStyleLine;
+        self.alertTxtName.borderStyle = UITextBorderStyleRoundedRect;
         self.alertTxtName.placeholder = @"用户名";
         [self addSubview:self.alertTxtName];
         
@@ -84,7 +89,7 @@
         self.alertTxtPsd.textAlignment = self.alertTxtPsd.textAlignment = NSTextAlignmentCenter;
         self.alertTxtPsd.textColor = [UIColor colorWithRed:127.0/255.0 green:127.0/255.0 blue:127.0/255.0 alpha:1];
         self.alertTxtPsd.font = [UIFont systemFontOfSize:15.0f];
-        self.alertTxtPsd.borderStyle = UITextBorderStyleLine;
+        self.alertTxtPsd.borderStyle = UITextBorderStyleRoundedRect;
         self.alertTxtPsd.placeholder = @"密码";
         self.alertTxtPsd.secureTextEntry = YES;
         [self addSubview:self.alertTxtPsd];
@@ -129,6 +134,8 @@
         
         [self.leftBtn addTarget:self action:@selector(leftBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.rightBtn addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+       
+        
         self.leftBtn.layer.masksToBounds = self.rightBtn.layer.masksToBounds = YES;
         self.leftBtn.layer.cornerRadius = self.rightBtn.layer.cornerRadius = 3.0;
         [self addSubview:self.leftBtn];
@@ -160,11 +167,48 @@
 
 - (void)rightBtnClicked:(id)sender
 {
+    // 点击确定按钮验证身份
+    
+    if([self UserLogin]==false)
+    {
+        return;
+    }
+    
+    if([strflg isEqualToString:@"jiance"] == true)
+    {
+        [btnOKDelegate clickedOK:strName];
+    }
+    
+    if([strflg isEqualToString:@"jilu"] == true)
+    {
+        [btnOKDelegate jiluClick:strName];
+    }
+    
+    if([strflg isEqualToString:@"fuhe"] == true)
+    {
+        [btnOKDelegate fuheClick:strName];
+    }
+    
     _leftLeave = NO;
     [self dismissAlert];
     if (self.rightBlock) {
         self.rightBlock();
     }
+}
+
+-(BOOL)UserLogin
+{
+    UserTbDAC *user = [UserTbDAC alloc];
+    strName = alertTxtName.text;
+    bool bl = [user UserLoginWithUserName:alertTxtName.text Psd:alertTxtPsd.text];
+    
+    if(bl == true)
+    {
+        return true;
+    }
+    
+    return false;
+
 }
 
 - (void)show
@@ -227,7 +271,7 @@
     }
     [topVC.view addSubview:self.backImageView];
     self.transform = CGAffineTransformMakeRotation(-M_1_PI / 2);
-    CGRect afterFrame = CGRectMake((CGRectGetWidth(topVC.view.bounds) - kAlertWidth) * 0.5, (CGRectGetHeight(topVC.view.bounds) - kAlertHeight) * 0.5, kAlertWidth, kAlertHeight);
+    CGRect afterFrame = CGRectMake((CGRectGetWidth(topVC.view.bounds) - kAlertWidth) * 0.5, (CGRectGetHeight(topVC.view.bounds) - kAlertHeight) * 0.3, kAlertWidth, kAlertHeight);
     [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.transform = CGAffineTransformMakeRotation(0);
         self.frame = afterFrame;
