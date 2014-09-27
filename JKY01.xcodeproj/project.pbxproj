@@ -144,6 +144,8 @@
 		0BDE919A18ED6E44000700C6 /* ChukouViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BDE919818ED6E44000700C6 /* ChukouViewController.xib */; };
 		0BE1950518E525D600AE5C2A /* DBInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1950418E525D600AE5C2A /* DBInfo.m */; };
 		0BE82A4E192DA1BE005E61BB /* SYSJiediDAC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE82A4D192DA1BE005E61BB /* SYSJiediDAC.m */; };
+		88AFB0FC19D6A433003B8208 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AFB0FA19D6A433003B8208 /* PickerViewController.m */; };
+		88AFB0FD19D6A433003B8208 /* PickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88AFB0FB19D6A433003B8208 /* PickerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -379,6 +381,9 @@
 		0BE1950418E525D600AE5C2A /* DBInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBInfo.m; sourceTree = "<group>"; };
 		0BE82A4C192DA1BE005E61BB /* SYSJiediDAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSJiediDAC.h; sourceTree = "<group>"; };
 		0BE82A4D192DA1BE005E61BB /* SYSJiediDAC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSJiediDAC.m; sourceTree = "<group>"; };
+		88AFB0F919D6A433003B8208 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
+		88AFB0FA19D6A433003B8208 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
+		88AFB0FB19D6A433003B8208 /* PickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -635,6 +640,9 @@
 				0B735C8F1945E6BB0071B486 /* UserInfo.m */,
 				0B8C7C5B194D842100691BEE /* TaskInfo.h */,
 				0B8C7C5C194D842100691BEE /* TaskInfo.m */,
+				88AFB0F919D6A433003B8208 /* PickerViewController.h */,
+				88AFB0FA19D6A433003B8208 /* PickerViewController.m */,
+				88AFB0FB19D6A433003B8208 /* PickerViewController.xib */,
 			);
 			name = Comm;
 			sourceTree = "<group>";
@@ -984,6 +992,7 @@
 				0B7A016118E90205003051E4 /* RenyuanSANViewController.xib in Resources */,
 				0B79644219458E23009FED8E /* btn_close_selected.png in Resources */,
 				0BDE919A18ED6E44000700C6 /* ChukouViewController.xib in Resources */,
+				88AFB0FD19D6A433003B8208 /* PickerViewController.xib in Resources */,
 				0B79644319458E23009FED8E /* btn_close_selected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1045,6 +1054,7 @@
 				0B46E9F918BB3FEC00403ED0 /* GongjuViewController.m in Sources */,
 				0BB3B4A118FD40D8007F5B2D /* SYSFileCheckDAC.m in Sources */,
 				0B5BD44018B2F46F00955A84 /* bzViewController.m in Sources */,
+				88AFB0FC19D6A433003B8208 /* PickerViewController.m in Sources */,
 				0BDCD1BC18C71E4200B8B755 /* CreateTable.m in Sources */,
 				0B79645919458E3C009FED8E /* MainViewController.m in Sources */,
 				0BA60CEB18C865C70077BC81 /* TLAlertView.m in Sources */,

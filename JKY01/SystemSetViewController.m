@@ -1583,8 +1583,14 @@
         [self insertRoadDataWithResult:result];
         return;
     }
-
     
+    // 获取隧道信息
+    NSArray *E3 = [rootElement elementsForName:@"Tunnel"];
+    if(E3.count>0 && [result length]>0)
+    {
+        [self insertTunnelDataWithResult:result];
+    }
+
 }
 
 // 上传本机数据到远程数据库，返回结果处理
@@ -2205,9 +2211,9 @@
 
 - (IBAction)getRoadInfo:(UIButton *)sender {
     
-    //[self getBusinessinfo];
+    [self getBusinessinfo];
     
-    //[self getroadinfo];
+    [self getroadinfo];
     
     [self getTunnelinfo];
 
@@ -2237,7 +2243,7 @@
     CLog(@"%@",soapMessage);
     
     //请求发送到的路径
-    NSString *url = @"http://211.149.150.98:8011/YHWebService.asmx";
+    NSString *url = @"http://183.224.76.199:8011/YHWebService.asmx";
     NSString *soapActionURL = @"http://tempuri.org/ManagerUnit_getAllManagerUnitToString";
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:url SOAPActionURL:soapActionURL ServiceMethodName:@"ManagerUnit_getAllManagerUnitToString" SoapMessage:soapMessage];
     
@@ -2359,15 +2365,16 @@
 {
     //使用NSData对象初始化
     NSError *error=nil;
+    NSString *strRoadID;
     NSString *strManagerUnitID;
-    NSString *strManagerUnitName;
+    NSString *strRoadName;
     BOOL blrest = false;
     
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithXMLString:strResult options:0 error:&error];
     //获取根节点
     GDataXMLElement *rootElement = [doc rootElement];
     //获取根节点下的节点（ManagerUnit）
-    NSArray *users = [rootElement elementsForName:@"ManagerUnit"];
+    NSArray *users = [rootElement elementsForName:@"RoadBelong"];
     
     //插入数据库
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -2384,30 +2391,33 @@
     if(users.count>0)
     {
         // 首先删除本机ManagerUnit表数据
-        [database executeUpdate:@"delete from ManagerUnit"];
+        [database executeUpdate:@"delete from RoadBelong"];
     }
     
     for (GDataXMLElement *user in users) {
         //获取节点的值
+        GDataXMLElement *RoadIDElement = [[user elementsForName:@"RoadID"] objectAtIndex:0];
+        strRoadID = [RoadIDElement stringValue];
+        
         GDataXMLElement *ManagerUnitIDElement = [[user elementsForName:@"ManagerUnitID"] objectAtIndex:0];
         strManagerUnitID = [ManagerUnitIDElement stringValue];
         
-        GDataXMLElement *ManagerUnitNameElement = [[user elementsForName:@"ManagerUnitName"] objectAtIndex:0];
-        strManagerUnitName = [ManagerUnitNameElement stringValue];
+        GDataXMLElement *RoadNameElement = [[user elementsForName:@"RoadName"] objectAtIndex:0];
+        strRoadName = [RoadNameElement stringValue];
         
         //  插入数据
         [database beginTransaction]; // 启动事物
         BOOL isRollBack = NO;
         BOOL insert;
         @try {
-            insert = [database executeUpdate:@"insert into ManagerUnit (ManagerUnitID,ManagerUnitName) values (?,?)" , strManagerUnitID , strManagerUnitName ];
+            insert = [database executeUpdate:@"insert into RoadBelong (RoadID,ManagerUnitID,RoadName) values (?,?,?)" , strRoadID , strManagerUnitID,  strRoadName];
         }
         @catch (NSException *exception) {
             isRollBack = YES;
             [database rollback];
             blrest = false;
             [ErrLog setOptResult:false];
-            [ErrLog setexception:@"插入数据错误:ManagerUnit"];
+            [ErrLog setexception:@"插入数据错误:RoadBelong"];
             [ErrLog setOptTitle:@"错误"];
             return false;
         }
@@ -2420,7 +2430,7 @@
             {
                 blrest = false;
                 [ErrLog setOptResult:false];
-                [ErrLog setexception:@"插入数据错误:ManagerUnit"];
+                [ErrLog setexception:@"插入数据错误:RoadBelong"];
                 [ErrLog setOptTitle:@"错误"];
                 return false;
             }
@@ -2462,6 +2472,99 @@
     [request setDelegate:self];
     self.runningRequest = request;
     
+}
+
+-(BOOL)insertTunnelDataWithResult:(NSString *)strResult
+{
+    //使用NSData对象初始化
+    NSError *error=nil;
+    NSString *strTunnelID;
+    NSString *strRoadID;
+    NSString *strTunnelName;
+    NSString *strCheckStation;
+    NSString *strProtectUnit;
+    NSString *strRoadLevel;
+    
+    BOOL blrest = false;
+    
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithXMLString:strResult options:0 error:&error];
+    //获取根节点
+    GDataXMLElement *rootElement = [doc rootElement];
+    //获取根节点下的节点（ManagerUnit）
+    NSArray *users = [rootElement elementsForName:@"Tunnel"];
+    
+    //插入数据库
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [paths objectAtIndex:0];
+    NSString *dbPath = [documentPath stringByAppendingPathComponent:@"JKYDB.db"];
+    database = [FMDatabase databaseWithPath:dbPath];
+    if (![database open]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"更新人员数据表，数据库无法打开" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        blrest = false;
+        return blrest;
+    }
+    
+    if(users.count>0)
+    {
+        // 首先删除本机ManagerUnit表数据
+        [database executeUpdate:@"delete from Tunnel"];
+    }
+    
+    for (GDataXMLElement *user in users) {
+        //获取节点的值
+        GDataXMLElement *RoadIDElement = [[user elementsForName:@"RoadID"] objectAtIndex:0];
+        strRoadID = [RoadIDElement stringValue];
+        
+        GDataXMLElement *TunnelIDElement = [[user elementsForName:@"TunnelID"] objectAtIndex:0];
+        strTunnelID = [TunnelIDElement stringValue];
+        
+        GDataXMLElement *TunnelNameElement = [[user elementsForName:@"TunnelName"] objectAtIndex:0];
+        strTunnelName = [TunnelNameElement stringValue];
+        
+        GDataXMLElement *CheckStationElement = [[user elementsForName:@"CheckStation"] objectAtIndex:0];
+        strCheckStation = [CheckStationElement stringValue];
+        
+        GDataXMLElement *ProtectUnitElement = [[user elementsForName:@"ProtectUnit"] objectAtIndex:0];
+        strProtectUnit = [ProtectUnitElement stringValue];
+        
+        GDataXMLElement *RoadLevelElement = [[user elementsForName:@"RoadLevel"] objectAtIndex:0];
+        strRoadLevel = [RoadLevelElement stringValue];
+        
+        //  插入数据
+        [database beginTransaction]; // 启动事物
+        BOOL isRollBack = NO;
+        BOOL insert;
+        @try {
+            insert = [database executeUpdate:@"insert into Tunnel (TunnelID,RoadID,TunnelName,CheckStation,ProtectUnit,RoadLevel) values (?,?,?,?,?,?)" , strTunnelID , strRoadID,  strTunnelName , strCheckStation , strProtectUnit , strRoadLevel];
+        }
+        @catch (NSException *exception) {
+            isRollBack = YES;
+            [database rollback];
+            blrest = false;
+            [ErrLog setOptResult:false];
+            [ErrLog setexception:@"插入数据错误:Tunnel"];
+            [ErrLog setOptTitle:@"错误"];
+            return false;
+        }
+        @finally {
+            if (!isRollBack && insert) {
+                [database commit];
+                blrest = true;
+            }
+            else
+            {
+                blrest = false;
+                [ErrLog setOptResult:false];
+                [ErrLog setexception:@"插入数据错误:Tunnel"];
+                [ErrLog setOptTitle:@"错误"];
+                return false;
+            }
+        }
+    }
+    [database close];
+    return blrest;
+
 }
 
 

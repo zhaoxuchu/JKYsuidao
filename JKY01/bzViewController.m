@@ -30,6 +30,9 @@
 	// 获取任务
    self.muAryTask =  [self getTaskData];
     
+    // 设置选择隧道
+    [self addTunnelview];
+    
 }
 
 
@@ -122,17 +125,23 @@
     return [muAryTask objectAtIndex:row];
 }
 
+//===========================================================================================
+//                        选择隧道 start                                                     =
+//===========================================================================================
+-(void)addTunnelview
+{
+    picker = [[PickerViewController alloc] initWithNibName:@"PickerViewController" bundle:nil];
+    
+    picker.view.frame = CGRectMake(0,0,800,250);
+    [self addChildViewController:picker];
+    self.view.clipsToBounds = true;
+    
+    [self.view addSubview:picker.view];
+}
 
-
-
-
-
-
-
-
-
-
-
+//===========================================================================================
+//                        选择隧道 end                                                     =
+//===========================================================================================
 
 
 

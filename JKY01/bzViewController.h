@@ -17,6 +17,7 @@
 #import "ErrLog.h"
 #import "NetWebServiceRequest.h"
 #import "CreateTable.h"
+#import "PickerViewController.h"
 
 
 @interface bzViewController : UIViewController<UIPickerViewDataSource , UIPickerViewDelegate>
@@ -25,6 +26,7 @@
     FMDatabase *database;
     FMResultSet *resultSet;
     NSMutableArray *maryTaskDric;
+    PickerViewController *picker;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *sc;
